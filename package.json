@@ -1,5 +1,5 @@
 {
-  "name": "@openleash/plugin-dangerous-code",
+  "name": "@openleash/plugin-code-scanner",
   "version": "1.0.0",
   "type": "module",
   "main": "dist/index.js",

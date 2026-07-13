@@ -1,8 +1,8 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import type { EvaluationRequest, PluginCapabilities } from "@openleash/shared";
-import { generatedCodeCandidate, runDangerousCode } from "./index.js";
-import { DANGEROUS_CODE_AGENT_KINDS } from "./manifest.js";
+import { generatedCodeCandidate, runCodeScanner } from "./index.js";
+import { CODE_SCANNER_AGENT_KINDS } from "./manifest.js";
 
 function request(toolInput: unknown): EvaluationRequest {
   return {
@@ -52,13 +52,13 @@ function capabilities(assessment: unknown) {
 }
 
 test("manifest excludes non-coding agents", () => {
-  assert.ok(DANGEROUS_CODE_AGENT_KINDS.includes("claude-code"));
-  assert.ok(DANGEROUS_CODE_AGENT_KINDS.includes("github-copilot"));
+  assert.ok(CODE_SCANNER_AGENT_KINDS.includes("claude-code"));
+  assert.ok(CODE_SCANNER_AGENT_KINDS.includes("github-copilot"));
   assert.equal(
-    DANGEROUS_CODE_AGENT_KINDS.includes("salesforce-agentforce"),
+    CODE_SCANNER_AGENT_KINDS.includes("salesforce-agentforce"),
     false,
   );
-  assert.equal(DANGEROUS_CODE_AGENT_KINDS.includes("openclaw"), false);
+  assert.equal(CODE_SCANNER_AGENT_KINDS.includes("openclaw"), false);
 });
 
 test("extracts generated code and ignores prose", () => {
@@ -94,7 +94,7 @@ test("risky code produces a notification and security signal", async () => {
       },
     ],
   });
-  const result = await runDangerousCode(
+  const result = await runCodeScanner(
     request({
       content:
         "import os\n\ndef run(user):\n    command = 'echo ' + user\n    return os.system(command)\n",
@@ -114,7 +114,7 @@ test("clean code is logged without notifying", async () => {
     summary: "No vulnerability.",
     vulnerabilities: [],
   });
-  const result = await runDangerousCode(
+  const result = await runCodeScanner(
     request({
       content:
         "export function add(left: number, right: number) {\n  if (!Number.isFinite(left) || !Number.isFinite(right)) throw new Error('invalid');\n  return left + right;\n}\n",

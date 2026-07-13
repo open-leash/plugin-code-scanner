@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:EF4444,45:F97316,100:111827&height=220&section=header&text=dangerous-code&fontSize=52&fontColor=ffffff&fontAlignY=38&desc=Security%20review%20for%20AI-generated%20code.&descSize=18&descAlignY=58" width="100%" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:EF4444,45:F97316,100:111827&height=220&section=header&text=code-scanner&fontSize=52&fontColor=ffffff&fontAlignY=38&desc=Security%20review%20for%20AI-generated%20code.&descSize=18&descAlignY=58" width="100%" />
 
 <p>
   <a href="https://openleash.com"><img src="https://img.shields.io/badge/OpenLeash-openleash.com-EF4444?style=for-the-badge&logo=googlechrome&logoColor=white" /></a>
@@ -16,7 +16,7 @@
 
 ## What it does
 
-`dangerous-code` observes code produced by supported coding agents, sends meaningful code and patches through OpenLeash's structured LLM evaluator, logs every completed review, and notifies the developer when a concrete vulnerability crosses the configured risk threshold.
+`code-scanner` observes code produced by supported coding agents, sends meaningful code and patches through OpenLeash's structured LLM evaluator, logs every completed review, and notifies the developer when a concrete vulnerability crosses the configured risk threshold.
 
 It is advisory: it never blocks a tool or rewrites generated code.
 

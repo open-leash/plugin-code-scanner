@@ -1,0 +1,26 @@
+{
+  "name": "@openleash/plugin-dangerous-code",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "tsx --test src/index.test.ts"
+  },
+  "peerDependencies": {
+    "@openleash/shared": "^0.1.0"
+  },
+  "devDependencies": {
+    "@openleash/shared": "^0.1.0",
+    "tsx": "^4.20.3",
+    "typescript": "^5.8.3"
+  }
+}

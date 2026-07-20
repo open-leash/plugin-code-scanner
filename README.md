@@ -67,6 +67,10 @@ The prompt focuses on exploitable risks such as injection, broken authorization,
 | `notificationRiskThreshold` |    `70` | Minimum 0–100 score required to notify.            |
 | `minimumCodeCharacters`     |    `80` | Skips tiny snippets before invoking the evaluator. |
 
+OpenLeash resolves these settings for every request. A personal user may set them globally, for an agent kind, or for an exact authenticated/enrolled runtime. In organization modes, admin defaults and matching organization profiles apply first; employee settings and profiles apply only when configuration is unlocked. Mandatory installation and configuration locking are independent, so an admin may require Code Scanner while still allowing employee-specific thresholds.
+
+The plugin receives only the effective `input.config` and does not branch on Individual Open Source, personal or organization OpenLeash Cloud, Private Cloud, or user role.
+
 ## Development
 
 ```bash

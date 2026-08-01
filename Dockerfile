@@ -9,9 +9,10 @@ COPY plugins/container-runtime/server.mjs ./server.mjs
 COPY plugins/plugin-code-scanner/dist ./plugin
 COPY packages/shared/dist ./node_modules/@openleash/shared/dist
 COPY packages/shared/package.json ./node_modules/@openleash/shared/package.json
+RUN rm -rf /usr/local/lib/node_modules/npm /usr/local/lib/node_modules/corepack \
+      /usr/local/bin/npm /usr/local/bin/npx /usr/local/bin/corepack
 RUN chown -R node:node /app
 USER node
 EXPOSE 8080
 HEALTHCHECK --interval=15s --timeout=3s --retries=5 CMD node -e "fetch('http://127.0.0.1:8080/healthz').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"
 CMD ["node", "server.mjs"]
-
